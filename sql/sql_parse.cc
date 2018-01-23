@@ -4288,6 +4288,11 @@ int mysql_check_update(THD *thd)
     {
         for (table=thd->lex->query_tables; table; table=table->next_global)
         {
+            if (table->db[0] == "\0") {
+                if (table->table_name == "*")
+                    continue;
+                table->db = thd->lex->query_tables->db
+            }
             table_info = mysql_get_table_object(thd, table->db, table->table_name, TRUE);
             if (table_info == NULL) {
                 tablenotexisted=true;
@@ -6466,6 +6471,11 @@ mysql_load_tables(
 
     for (table= tables->first; table; table= table->next_local)
     {
+        if (table->db[0] == '\0') {
+            if (table->table_name[0] == '*')
+                continue;
+            table->db = thd->lex->query_tables->db;
+        }
         tableinfo = mysql_get_table_object(thd, table->db, table->table_name, TRUE);
         //如果有自连接，或者在不同层次使用了同一个表，那么以上层主准
         if (tableinfo)
@@ -7635,7 +7645,17 @@ mysql_check_item(
         {
             table_info_t* tableinfo;
             table_rt_t* tablert;
-            if (strcasecmp(((Item_field*)item)->field_name, "*"))
+            char prex[100];
+            if (((Item_field*)item)->table_name	!= 0x0)
+            {
+                strncpy(prex,((Item_field*)item)->table_name,6);
+                prex[6] = '\0';
+            }
+            else
+            {
+                strcpy(prex,"ppppppppp")
+            }
+            if (strcasecmp(((Item_field*)item)->field_name, "*") && strcasecmp(prex, "dbatmp"))
             {
                 tablert = mysql_find_field_from_all_tables(
                     thd, thd->rt_lst, select_lex, ((Item_field*)item)->db_name, 
