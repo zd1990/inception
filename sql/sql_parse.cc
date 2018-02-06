@@ -4288,7 +4288,7 @@ int mysql_check_update(THD *thd)
     {
         for (table=thd->lex->query_tables; table; table=table->next_global)
         {
-            if (table->db[0] == "\0") {
+            if (table->db[0] == '\0') {
                 if (table->table_name == "*")
                     continue;
                 table->db = thd->lex->query_tables->db;
@@ -7653,7 +7653,7 @@ mysql_check_item(
             }
             else
             {
-                strcpy(prex,"ppppppppp")
+                strcpy(prex,"ppppppppp");
             }
             if (strcasecmp(((Item_field*)item)->field_name, "*") && strcasecmp(prex, "dbatmp"))
             {
