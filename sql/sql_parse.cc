@@ -4291,7 +4291,7 @@ int mysql_check_update(THD *thd)
             if (table->db[0] == "\0") {
                 if (table->table_name == "*")
                     continue;
-                table->db = thd->lex->query_tables->db
+                table->db = thd->lex->query_tables->db;
             }
             table_info = mysql_get_table_object(thd, table->db, table->table_name, TRUE);
             if (table_info == NULL) {
