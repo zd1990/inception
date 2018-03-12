@@ -4876,7 +4876,7 @@ mysql_check_index_attribute(
         }
         else if (key->type == Key::UNIQUE)
         {
-            if (strncasecmp(key->name.str, "uniq_", 5) != 0)
+            if (strncasecmp(key->name.str, "uk_", 3) != 0)
             {
                 my_error(ER_INDEX_NAME_UNIQ_PREFIX, MYF(0), key->name.str, table_name);
                 mysql_errmsg_append(thd);
