@@ -160,7 +160,7 @@ bool init_errmessage(void)
   SERVER_SETMSG(ER_DB_NOT_EXISTED_ERROR, "Selected Database \'%-.64s\' not existed.");
   SERVER_SETMSG(ER_TABLE_EXISTS_ERROR, "Table \'%-.192s\' already exists.");
   SERVER_SETMSG(ER_INDEX_NAME_IDX_PREFIX, "Index \'%-.192s\' in table \'%-.64s\' need \'idx_\' prefix.");
-  SERVER_SETMSG(ER_INDEX_NAME_UNIQ_PREFIX, "Index \'%-.192s\' in table \'%-.64s\' need \'uniq_\' prefix.");
+  SERVER_SETMSG(ER_INDEX_NAME_UNIQ_PREFIX, "Index \'%-.192s\' in table \'%-.64s\' need \'uk_\' prefix.");
   SERVER_SETMSG(ER_AUTOINC_UNSIGNED, "Set unsigned attribute on auto increment column in table \'%-.64s\'.");
   SERVER_SETMSG(ER_VARCHAR_TO_TEXT_LEN, "Set column \'%-.192s\' to TEXT type.");
   SERVER_SETMSG(ER_CHAR_TO_VARCHAR_LEN, "Set column \'%-.192s\' to VARCHAR type.");
