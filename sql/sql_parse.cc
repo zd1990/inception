@@ -10752,7 +10752,7 @@ int mysql_execute_and_backup(THD *thd, MYSQL* mysql, sql_cache_node_t* sql_cache
             before_binlog_name, &before_binlog_pos))
             DBUG_RETURN(TRUE);
 
-        if (!mysql_check_binlog_format(thd, (char*)"ROW"))
+        if (!mysql_check_binlog_format(thd, (char*)"ROW"))                         // 检测日志是否为row格式，如果不是，则需要super权限设置
             if (mysql_modify_binlog_format_row(mysql))
                 DBUG_RETURN(TRUE);
     }
