@@ -4289,7 +4289,7 @@ int mysql_check_update(THD *thd)
         for (table=thd->lex->query_tables; table; table=table->next_global)
         {
             if (table->db[0] == '\0') {
-                if (table->table_name[0] == "*")
+                if (table->table_name[0] == '*')
                     continue;
                 table->db = thd->lex->query_tables->db;
             }
